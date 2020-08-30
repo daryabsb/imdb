@@ -27,11 +27,11 @@
 
         <header class="header">
             <figure class="logo">
-                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></figure>
+                <a href="/"><img src="{% static 'img/logo.png' %}" alt="Logo"></figure>
             </a>
             <nav class="menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a>Genres</a>
                         <ul>
                             <li><a href="genre.html">Action</a></li>
@@ -144,7 +144,7 @@
 
     </div>
     <!-- Swiper JS -->
-    <script src="js/swiper.min.js"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
 
     <!-- Initialize Swiper -->
     <script>

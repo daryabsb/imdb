@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Movie
+
+from django.views.generic import ListView, DetailView
+
+
+class Home(ListView):
+    model = Movie
+    template_name = "home.html"
