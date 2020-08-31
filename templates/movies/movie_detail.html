@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block main %}
 
-
 <main class="content">
     <div class="single">
 
@@ -12,10 +11,10 @@
         </section>
 
         <section class="movie">
-            <img src="{% static 'images/9.jpg' %}">
+            <img src="{{object.image.url}}">
             <ul>
-                <li>Space Between Us</li>
-                <li>The first human born on Mars travels to Earth for the first time, experiencing the wonders of the planet through fresh eyes. He embarks on an adventure with a street smart girl to discover how he came to be.</li>
+                <li>{{object}}</li>
+                <li>{{object.description}}</li>
                 <li><a href="genre.html">Adventure</a>, <a href="genre.html">Drama</a>, <a href="genre.html">Romance</a></li>
                 <li><a href="cast.html">Gary Oldman</a>, <a href="cast.html">Asa Butterfield</a></li>
                 <li>12,000 Views</li>

@@ -44,6 +44,7 @@ class Movie(models.Model):
     """models.ForeignKey('Category', on_delete=models.SET_NULL)"""
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)
+    cast = models.CharField(max_length=100, blank=True, null=True)
     year = models.DateField()
     views_count = models.IntegerField(default=0)
     # tags =
@@ -55,3 +56,19 @@ class Movie(models.Model):
 
 
 # watch links
+
+LINK_Choices = (
+    ("D", "Download Link"),
+    ("W", "Watch Link"),
+)
+
+
+class MovieLink(models.Model):
+    movie = models.ForeignKey(
+        "Movie", related_name="movie_download_links", on_delete=models.CASCADE
+    )
+    type = models.CharField(choices=LINK_Choices, max_length=1)
+    link = models.URLField()
+
+    def __str__(self):
+        return f"{self.movie.title} ({self.type})'s link"
