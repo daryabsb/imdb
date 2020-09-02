@@ -65,8 +65,8 @@
                     </li>
                 </ul>
             </nav>
-            <form class="search" method="GET">
-                <input type="text" name="q" value="{{ request.GET.q }}" class="searchfield" placeholder="Search...">
+            <form class="search" method="GET" action="{% url 'movies:movie-search' %}">
+                <input type="text" name="query" value="{{ request.GET.q }}" class="searchfield" placeholder="Search...">
                 <input type="submit" value="" class="searchsubmit">
             </form>
 

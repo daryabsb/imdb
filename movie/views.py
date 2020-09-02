@@ -65,7 +65,13 @@ class MovieSearch(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
+        query = self.request.GET.get("query")
         if query:
-            object_list = Movie.objects.filter(title__icontain=query)
-            return object_list
+            object_list = self.model.objects.filter(title__icontains=query)
+            # print('Reached')
+            # print(query)
+            # print(object_list)
+        else:
+            object_list = self.model.objects.none()
+            print('Rejected')
+        return object_list
