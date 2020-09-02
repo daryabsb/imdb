@@ -16,17 +16,17 @@ Then we will reference it as an FK in the Movie model
 
 
 CATEGORY_CHOICES = (
-    ("A", "ACTION"),
-    ("D", "DRAMA"),
-    ("C", "COMEDY"),
-    ("R", "ROMANCE"),
+    ("action", "ACTION"),
+    ("drama", "DRAMA"),
+    ("comedy", "COMEDY"),
+    ("romance", "ROMANCE"),
 )
 
 LANGUAGE_CHOICES = (
-    ("EN", "ENGLISH"),
-    ("AR", "ARABIC"),
-    ("KU", "KURDISH"),
-    ("GR", "GERMAN"),
+    ("english", "ENGLISH"),
+    ("arabic", "ARABIC"),
+    ("kurdish", "KURDISH"),
+    ("germany", "GERMAN"),
 )
 
 STATUS_CHOICES = (
@@ -40,9 +40,9 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, blank=True, null=True)
     image = models.ImageField(upload_to="movies")
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=1)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=15)
     """models.ForeignKey('Category', on_delete=models.SET_NULL)"""
-    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=15)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)
     cast = models.CharField(max_length=100, blank=True, null=True)
     year = models.DateField()

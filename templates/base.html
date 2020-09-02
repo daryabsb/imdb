@@ -34,10 +34,10 @@
                     <li><a href="/">Home</a></li>
                     <li><a>Genres</a>
                         <ul>
-                            <li><a href="genre.html">Action</a></li>
-                            <li><a href="genre.html">Comedy</a></li>
-                            <li><a href="genre.html">Drama</a></li>
-                            <li><a href="genre.html">Romance</a></li>
+                            <li><a href="{% url 'movies:movie-category' 'action' %}">Action</a></li>
+                            <li><a href="{% url 'movies:movie-category' 'comedy' %}">Comedy</a></li>
+                            <li><a href="{% url 'movies:movie-category' 'drama' %}">Drama</a></li>
+                            <li><a href="{% url 'movies:movie-category' 'romance' %}">Romance</a></li>
                         </ul>
                     </li>
                     <li><a>Year</a>
@@ -50,21 +50,23 @@
                     </li>
                     <li><a>Language</a>
                         <ul>
-                            <li><a href="language.html">English</a></li>
-                            <li><a href="language.html">German</a></li>
+                            <li><a href="{% url 'movies:movie-language' 'english' %}">English</a></li>
+                            <li><a href="{% url 'movies:movie-language' 'kurdish' %}">Kurdish</a></li>
+                            <li><a href="{% url 'movies:movie-language' 'arabic' %}">Arabic</a></li>
+                            <li><a href="{% url 'movies:movie-language' 'germany' %}">German</a></li>
                         </ul>
                     </li>
 
-                    <li class="mobsearch">
+                    <li class="mobsearch" method="GET">
                         <form class="mobform">
-                            <input type="text" name="s" class="mobsearchfield" placeholder="Search...">
+                            <input type="text" name="q" value="{{ request.GET.q }}" class="mobsearchfield" placeholder="Search...">
                             <input type="submit" value="" class="mobsearchsubmit">
                         </form>
                     </li>
                 </ul>
             </nav>
-            <form class="search">
-                <input type="text" name="s" class="searchfield" placeholder="Search...">
+            <form class="search" method="GET">
+                <input type="text" name="q" value="{{ request.GET.q }}" class="searchfield" placeholder="Search...">
                 <input type="submit" value="" class="searchsubmit">
             </form>
 

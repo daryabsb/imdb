@@ -20,10 +20,11 @@ from core.views import Home
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path("", Home.as_view(), name="home"),
     path("admin/", admin.site.urls),
-    path("movies/", include("movie.urls")),
+    path("movies/", include("movie.urls", namespace="movies")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
