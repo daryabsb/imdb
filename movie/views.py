@@ -3,6 +3,7 @@ from django.shortcuts import render
 from core.models import Movie, MovieLink
 
 from django.views.generic import ListView, DetailView
+from django.views.generic.dates import YearArchiveView
 
 
 class MovieList(ListView):
@@ -73,5 +74,15 @@ class MovieSearch(ListView):
             # print(object_list)
         else:
             object_list = self.model.objects.none()
-            print('Rejected')
+            print("Rejected")
         return object_list
+
+
+class MovieYear(YearArchiveView):
+    queryset = Movie.objects.all()
+    template_name = "movies/movie_archive_year.html"
+    date_field = "year"
+    make_object_list = True
+    allow_future = True
+
+    print(queryset)
