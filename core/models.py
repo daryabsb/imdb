@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 """
 We will use CATEGORY_CHOICES for the sake of this tutorial
@@ -47,9 +48,16 @@ class Movie(models.Model):
     cast = models.CharField(max_length=100, blank=True, null=True)
     year = models.DateField()
     views_count = models.IntegerField(default=0)
+    slug = models.SlugField(blank=True, null=True)
+    movie_trailer = models.URLField(default='#')
     # tags =
 
     # download links
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Movie, self).save( *args, **kwargs)
 
     def __str__(self):
         return f"{self.title} ({self.year})"

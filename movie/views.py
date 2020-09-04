@@ -4,7 +4,7 @@ from core.models import Movie, MovieLink
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 class MovieList(ListView):
     model = Movie
@@ -21,7 +21,7 @@ class MovieDetail(DetailView):
         object.views_count += 1
         object.save()
         return object
-
+    
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
         context["links"] = MovieLink.objects.filter(movie=self.get_object())
@@ -85,4 +85,4 @@ class MovieYear(YearArchiveView):
     make_object_list = True
     allow_future = True
 
-    print(queryset)
+    # print(queryset)
