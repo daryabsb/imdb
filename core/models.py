@@ -49,7 +49,9 @@ class Movie(models.Model):
     year = models.DateField()
     views_count = models.IntegerField(default=0)
     slug = models.SlugField(blank=True, null=True)
-    movie_trailer = models.URLField(default='#')
+    movie_trailer = models.URLField(default="#")
+    created = models.DateTimeField(auto_now_add=True)
+    poster = models.ImageField(upload_to="movies/posters", blank=True, null=True)
     # tags =
 
     # download links
@@ -57,7 +59,7 @@ class Movie(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Movie, self).save( *args, **kwargs)
+        super(Movie, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} ({self.year})"

@@ -7,36 +7,19 @@
     <div class="swiper-container">
 
         <div class="swiper-wrapper">
+            {% for sMovie in slider_movies %}
             <div class="swiper-slide">
-                <img src="{% static 'images/slider/poster2.jpg' %}">
+                <img src="{{ sMovie.poster.url }}">
                 <div class="caption">
                     <div class="captioninside">
-                        <h3>Movie Title</h3>
-                        <p>Lorem ipsum dolor siamet</p>
-                        <a href="single.html" class="playbutton">Play</a>
+                        <h3>{{ sMovie.title }}</h3>
+                        <p>{{ sMovie.description }}</p>
+                        <a href="{% url 'movies:movie-detail' sMovie.slug %}" class="playbutton">Play</a>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
-                <img src="{% static 'images/slider/poster1.jpg' %}">
-                <div class="caption">
-                    <div class="captioninside">
-                        <h3>Movie Title 2</h3>
-                        <p>Lorem ipsum dolor siamet</p>
-                        <a href="single.html" class="playbutton">Play</a>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <img src="{% static 'images/slider/poster2.jpg' %}">
-                <div class="caption">
-                    <div class="captioninside">
-                        <h3>Movie Title 3</h3>
-                        <p>Lorem ipsum dolor siamet</p>
-                        <a href="single.html" class="playbutton">Play</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>

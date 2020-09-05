@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from django.views.decorators.clickjacking import xframe_options_exempt
 
+
 class MovieList(ListView):
     model = Movie
     template_name = "movies/movie_list.html"
@@ -21,10 +22,14 @@ class MovieDetail(DetailView):
         object.views_count += 1
         object.save()
         return object
-    
+
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
         context["links"] = MovieLink.objects.filter(movie=self.get_object())
+        context["related_movies"] = Movie.objects.filter(
+            category=self.get_object().category
+        ).order_by("-created")[0:6]
+        print(context["related_movies"])
         return context
 
 
