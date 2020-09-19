@@ -30,6 +30,7 @@ class MovieDetail(DetailView):
             category=self.get_object().category
         ).order_by("-created")[0:6]
         print(context["related_movies"])
+        print("Hooray")
         return context
 
 

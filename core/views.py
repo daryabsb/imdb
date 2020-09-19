@@ -5,6 +5,6 @@ from .models import Movie
 from django.views.generic import ListView, DetailView
 
 
-class Home(ListView):
+class HomeView(ListView):
     model = Movie
     template_name = "home.html"
